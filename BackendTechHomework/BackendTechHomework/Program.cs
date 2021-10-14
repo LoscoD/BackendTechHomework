@@ -9,9 +9,13 @@ namespace BackendTechHomework
     class Program
     {
 
-        static void ShowCity(City city)
+        static void ShowCity(City city, Weather weather)
         {
             var logMessage = $"Processed city {city.Name} | ";
+            foreach (ForecastDay forecastDay in weather.forecast.forecastday)
+            {
+                logMessage = logMessage + forecastDay.day.condition.text + " - ";
+            }
             logMessage = logMessage.Substring(0, logMessage.Length - 3);
             Console.WriteLine(logMessage);
         }
@@ -30,18 +34,18 @@ namespace BackendTechHomework
                 City[] citiesList = await musementService.GetCitiesAsync("cities");
                 if (citiesList.Length > 0)
                 {
-
                     var list = from city in citiesList
                                orderby city.Name
                                select city;
 
-                    Array.ForEach<City>(list.ToArray<City>(), city =>
+                    WeatherService weatherService = new WeatherService();
+
+                    Array.ForEach<City>(list.ToArray<City>(), async city =>
                     {
-                        ShowCity(city);
+                        Weather forecast = await weatherService.GetForecastAsync(city, 2);
+                        ShowCity(city, forecast);
                     });
-
                 }
-
             }
             catch (Exception e)
             {
