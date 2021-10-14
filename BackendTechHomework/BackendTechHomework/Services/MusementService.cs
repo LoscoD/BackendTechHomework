@@ -8,7 +8,7 @@ namespace BackendTechHomework.Services
 {
     class MusementService
     {
-        static HttpClient client = new HttpClient();
+        HttpClient client = new HttpClient();
 
         public MusementService()
         {

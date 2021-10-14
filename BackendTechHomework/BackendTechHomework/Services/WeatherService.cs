@@ -8,7 +8,7 @@ namespace BackendTechHomework.Services
 {
     class WeatherService
     {
-        static HttpClient client = new HttpClient();
+        HttpClient client = new HttpClient();
 
         public WeatherService()
         {
@@ -20,7 +20,7 @@ namespace BackendTechHomework.Services
 
         public async Task<Weather> GetForecastAsync(City city, int numDays)
         {
-            HttpResponseMessage response = await client.GetAsync("forecast.json?key=1b36f423ccd14cf7a2a131328211310&q=" + city.Latitude + "," + city.Longitude + "&days=" + numDays);
+            HttpResponseMessage response = await client.GetAsync($"forecast.json?key=1b36f423ccd14cf7a2a131328211310&q={city.Latitude},{city.Longitude}&days={numDays}");
             if (response.IsSuccessStatusCode)
             {
                 var data = await response.Content.ReadAsAsync<Weather>();

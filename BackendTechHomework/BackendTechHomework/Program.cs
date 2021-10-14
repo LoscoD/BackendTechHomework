@@ -16,6 +16,7 @@ namespace BackendTechHomework
             {
                 logMessage = logMessage + forecastDay.day.condition.text + " - ";
             }
+            // for each day is added to logMessage a string to separate different days, but it should be removed at the end of message
             logMessage = logMessage.Substring(0, logMessage.Length - 3);
             Console.WriteLine(logMessage);
         }
@@ -34,6 +35,7 @@ namespace BackendTechHomework
                 City[] citiesList = await musementService.GetCitiesAsync("cities");
                 if (citiesList.Length > 0)
                 {
+                    // sort the cities list by name
                     var list = from city in citiesList
                                orderby city.Name
                                select city;
@@ -42,6 +44,7 @@ namespace BackendTechHomework
 
                     Array.ForEach<City>(list.ToArray<City>(), async city =>
                     {
+                        //Get 2 days forecast for each city
                         Weather forecast = await weatherService.GetForecastAsync(city, 2);
                         ShowCity(city, forecast);
                     });
