@@ -1,7 +1,7 @@
 ﻿
 namespace BackendTechHomework.Models
 {
-    class City
+    public class City
     {
         public int Id { get; set; }
         public string Uuid { get; set; }

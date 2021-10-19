@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackendTechHomework.Services
 {
-    class MusementService
+    public class MusementService
     {
         HttpClient client = new HttpClient();
 

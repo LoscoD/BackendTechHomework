@@ -1,7 +1,7 @@
 ﻿
 namespace BackendTechHomework.Models
 {
-    class Day
+    public class Day
     {
         public double maxtemp_c { get; set; }
         public double maxtemp_f { get; set; }

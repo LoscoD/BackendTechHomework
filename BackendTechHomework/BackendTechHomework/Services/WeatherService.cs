@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackendTechHomework.Services
 {
-    class WeatherService
+    public class WeatherService
     {
         HttpClient client = new HttpClient();
 

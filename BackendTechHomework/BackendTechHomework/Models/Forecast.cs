@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackendTechHomework.Models
 {
-    class Forecast
+    public class Forecast
     {
         public List<ForecastDay> forecastday { get; set; }
     }
