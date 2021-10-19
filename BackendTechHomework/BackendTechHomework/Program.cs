@@ -3,6 +3,7 @@ using BackendTechHomework.Models;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace BackendTechHomework
 {
@@ -30,6 +31,13 @@ namespace BackendTechHomework
         {
             try
             {
+                var config = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddUserSecrets<Program>()
+                .Build();
+
+                var weatherApiKey = config.GetSection("WeatherApiKey");
+
                 MusementService musementService = new MusementService();
                 // Get the cities
                 City[] citiesList = await musementService.GetCitiesAsync("cities");
@@ -45,7 +53,7 @@ namespace BackendTechHomework
                     Array.ForEach<City>(list.ToArray<City>(), async city =>
                     {
                         //Get 2 days forecast for each city
-                        Weather forecast = await weatherService.GetForecastAsync(city, 2);
+                        Weather forecast = await weatherService.GetForecastAsync(city, weatherApiKey.Value, 2);
                         ShowCity(city, forecast);
                     });
                 }

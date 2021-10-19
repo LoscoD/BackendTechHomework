@@ -18,9 +18,9 @@ namespace BackendTechHomework.Services
                 new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<Weather> GetForecastAsync(City city, int numDays)
+        public async Task<Weather> GetForecastAsync(City city, string apikey, int numDays)
         {
-            HttpResponseMessage response = await client.GetAsync($"forecast.json?key=1b36f423ccd14cf7a2a131328211310&q={city.Latitude},{city.Longitude}&days={numDays}");
+            HttpResponseMessage response = await client.GetAsync($"forecast.json?key={apikey}&q={city.Latitude},{city.Longitude}&days={numDays}");
             if (response.IsSuccessStatusCode)
             {
                 var data = await response.Content.ReadAsAsync<Weather>();
