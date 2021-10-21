@@ -13,3 +13,6 @@ Install-Package Microsoft.Extensions.Configuration.UserSecrets
   dotnet user-secrets set WeatherApiKey <YOURWEATHERAPIKEY>
 ```
 
+# Developer Info
+Davide Losco
+Consulting name company: Michaelpage
