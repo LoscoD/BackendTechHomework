@@ -15,4 +15,5 @@ Install-Package Microsoft.Extensions.Configuration.UserSecrets
 
 # Developer Info
 Davide Losco
+
 Consulting name company: Michaelpage
